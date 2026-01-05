@@ -5,7 +5,7 @@ A desktop application for exploring and analyzing the UCSF Multiple Sclerosis Me
 
 <br>
 
-![MS Console Screenshot](assets/screenshot.png)
+![MS Console Screenshot](assets/app-screenshot.png)
 
 ## Features
 
