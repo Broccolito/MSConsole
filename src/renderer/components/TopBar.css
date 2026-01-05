@@ -1,0 +1,66 @@
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--topbar-height);
+  padding: 0 var(--spacing-lg);
+  background-color: var(--secondary-bg);
+  border-bottom: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.topbar-left {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.app-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.logo-icon {
+  color: var(--accent-primary);
+}
+
+.app-name {
+  font-size: var(--font-size-xl);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.app-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  padding-left: var(--spacing-lg);
+  border-left: 1px solid var(--border-color);
+}
+
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.topbar-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-md);
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+}
+
+.topbar-btn:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+}
+
+.topbar-btn.active {
+  background-color: var(--accent-light);
+  color: var(--accent-primary);
+}

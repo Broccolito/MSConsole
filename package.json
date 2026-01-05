@@ -1,0 +1,75 @@
+{
+  "name": "msconsole",
+  "version": "1.0.0",
+  "description": "MS Console - OpenAI-powered chatbot for UCSF Multiple Sclerosis Database exploration",
+  "main": "src/main/main.js",
+  "author": "UCSF MS Research",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dev": "concurrently \"npm run watch\" \"wait-on dist/renderer/index.html && electron .\"",
+    "watch": "webpack --mode development --watch",
+    "build:renderer": "webpack --mode production",
+    "build": "npm run build:renderer && electron-builder",
+    "build:win": "npm run build:renderer && electron-builder --win",
+    "build:mac": "npm run build:renderer && electron-builder --mac",
+    "build:linux": "npm run build:renderer && electron-builder --linux",
+    "python:install": "pip install -r python/requirements.txt",
+    "python:start": "python python/msconsole_server.py"
+  },
+  "build": {
+    "appId": "edu.ucsf.msconsole",
+    "productName": "MS Console",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "src/main/**/*",
+      "python/**/*",
+      "assets/**/*",
+      "node_modules/**/*"
+    ],
+    "extraResources": [
+      {
+        "from": "python",
+        "to": "python",
+        "filter": ["**/*"]
+      }
+    ],
+    "mac": {
+      "category": "public.app-category.medical",
+      "target": ["dmg", "zip"]
+    },
+    "win": {
+      "target": ["nsis", "zip"]
+    },
+    "linux": {
+      "target": ["AppImage", "deb"],
+      "category": "Science"
+    }
+  },
+  "dependencies": {
+    "electron-store": "^8.1.0",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "@babel/preset-react": "^7.23.0",
+    "babel-loader": "^9.1.3",
+    "concurrently": "^8.2.0",
+    "css-loader": "^6.8.1",
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4",
+    "html-webpack-plugin": "^5.5.3",
+    "lucide-react": "^0.292.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.0",
+    "style-loader": "^3.3.3",
+    "wait-on": "^7.0.1",
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.4"
+  }
+}

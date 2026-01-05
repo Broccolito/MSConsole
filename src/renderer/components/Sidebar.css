@@ -1,0 +1,162 @@
+.sidebar {
+  width: var(--sidebar-width);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--secondary-bg);
+  border-right: 1px solid var(--border-color);
+  flex-shrink: 0;
+}
+
+.sidebar-header {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--subtle-border);
+}
+
+.new-chat-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  width: 100%;
+  padding: var(--spacing-md) var(--spacing-lg);
+  background-color: var(--accent-primary);
+  color: white;
+  border-radius: var(--radius-md);
+  font-weight: 500;
+  transition: background-color 0.15s ease;
+}
+
+.new-chat-btn:hover {
+  background-color: var(--accent-hover);
+}
+
+.conversations-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-sm);
+}
+
+.conversation-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-md);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  margin-bottom: 2px;
+  position: relative;
+}
+
+.conversation-item:hover {
+  background-color: var(--hover-bg);
+}
+
+.conversation-item.active {
+  background-color: var(--selected-bg);
+}
+
+.conv-icon {
+  color: var(--text-secondary);
+  flex-shrink: 0;
+}
+
+.conv-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: var(--font-size-sm);
+  color: var(--text-primary);
+}
+
+.conv-actions {
+  display: none;
+  align-items: center;
+  gap: 2px;
+}
+
+.conversation-item:hover .conv-actions {
+  display: flex;
+}
+
+.conv-action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  transition: all 0.15s ease;
+}
+
+.conv-action-btn:hover {
+  background-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.conv-action-btn.delete:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--error-color);
+}
+
+/* Edit mode */
+.edit-name-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.edit-name-input {
+  flex: 1;
+  padding: 4px 8px;
+  font-size: var(--font-size-sm);
+  border: 1px solid var(--accent-primary);
+  border-radius: var(--radius-sm);
+}
+
+.edit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+}
+
+.edit-btn.save {
+  color: var(--success-color);
+}
+
+.edit-btn.save:hover {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.edit-btn.cancel {
+  color: var(--text-secondary);
+}
+
+.edit-btn.cancel:hover {
+  background-color: var(--hover-bg);
+}
+
+/* Footer */
+.sidebar-footer {
+  padding: var(--spacing-md);
+  border-top: 1px solid var(--subtle-border);
+}
+
+.sidebar-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-text {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+}
