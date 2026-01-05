@@ -1,4 +1,4 @@
-# MS Console: Multiple Sclerosis Database Explorer <img src="assets/icon.png" align="right" alt="MS Console Logo" width="100"/>
+# MS Console <img src="assets/icon.png" align="right" alt="MS Console Logo" width="100"/>
 
 A desktop application for exploring and analyzing the UCSF Multiple Sclerosis Medical Database using OpenAI's GPT models and natural language queries.
 
