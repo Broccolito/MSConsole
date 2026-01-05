@@ -223,6 +223,6 @@ MIT License - See LICENSE file for details.
 
 For issues or questions, please contact the UCSF MS Research team.
 
----
+<br>
 
 **Disclaimer**: This application is intended for research purposes only. Always follow proper data handling and privacy protocols when working with medical data.
