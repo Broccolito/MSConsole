@@ -105,8 +105,10 @@
 }
 
 .empty-icon {
-  font-size: 48px;
+  width: 80px;
+  height: 80px;
   margin-bottom: var(--spacing-lg);
+  object-fit: contain;
 }
 
 .empty-state h2 {

@@ -301,7 +301,7 @@ const ChatView = ({
       >
         {conversation.messages.length === 0 && !isStreaming ? (
           <div className="empty-state">
-            <div className="empty-icon">🔬</div>
+            <img src="../../assets/icon.png" alt="MS Console" className="empty-icon" />
             <h2>Welcome to MS Console</h2>
             <p>
               Ask questions about the UCSF Multiple Sclerosis database.
