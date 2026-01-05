@@ -447,14 +447,21 @@ class StreamingMSConsole:
                 
                 # Process chunks in thread and yield results
                 chunks_data = await loop.run_in_executor(executor, process_chunks)
-                
+
+                # Track content added in this iteration
+                iteration_content = ""
                 for chunk_event in chunks_data:
-                    all_content += chunk_event.get("content", "")
+                    iteration_content += chunk_event.get("content", "")
                     yield chunk_event
                     await asyncio.sleep(0)
-                
+
+                # Add iteration content to accumulated content
+                all_content += iteration_content
+                logger.info(f"Iteration {iteration}: added {len(iteration_content)} chars, total: {len(all_content)} chars")
+
                 # If no tool calls, we're done
                 if not tool_calls_data:
+                    logger.info(f"No tool calls, sending done event with {len(all_content)} chars")
                     yield {"type": "done", "content": all_content}
                     return
                 
@@ -520,8 +527,9 @@ class StreamingMSConsole:
                     await asyncio.sleep(0)
                 
                 # Loop continues to next iteration for potential follow-up tool calls
-            
+
             # If we reached max iterations, yield what we have
+            logger.info(f"Chat completed after {iteration} iterations, total content length: {len(all_content)}")
             yield {"type": "done", "content": all_content}
                 
         except Exception as e:

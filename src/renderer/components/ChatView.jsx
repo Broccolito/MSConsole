@@ -149,9 +149,8 @@ const ChatView = ({
           
         case 'done':
           fullContent = event.content || fullContent;
-          if (settings.streamTokens) {
-            setStreamingContent(fullContent);
-          }
+          // Always show final content, regardless of streamTokens setting
+          setStreamingContent(fullContent);
           break;
           
         case 'error':
