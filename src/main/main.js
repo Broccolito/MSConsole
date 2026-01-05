@@ -33,13 +33,18 @@ let pythonPort = 8765;
 let isBackendReady = false;
 
 /**
- * Get the Python executable path based on the platform
+ * Get the Python executable path from venv (created using runtime Python)
  */
 function getPythonPath() {
+  // Use venv Python in development and production
+  const venvPath = app.isPackaged
+    ? path.join(process.resourcesPath, 'venv')
+    : path.join(__dirname, '..', '..', 'venv');
+
   if (process.platform === 'win32') {
-    return 'python';
+    return path.join(venvPath, 'Scripts', 'python.exe');
   }
-  return 'python3';
+  return path.join(venvPath, 'bin', 'python');
 }
 
 /**
@@ -59,13 +64,37 @@ function startPythonBackend() {
   return new Promise((resolve, reject) => {
     const pythonPath = getPythonPath();
     const scriptPath = getPythonScriptPath();
-    
+
     console.log(`[Backend] Starting Python backend...`);
+    console.log(`[Backend] App packaged: ${app.isPackaged}`);
+    console.log(`[Backend] Resources path: ${process.resourcesPath}`);
     console.log(`[Backend] Python path: ${pythonPath}`);
     console.log(`[Backend] Script path: ${scriptPath}`);
-    
-    // Check if script exists
+
+    // Check if Python exists
     const fs = require('fs');
+    if (!fs.existsSync(pythonPath)) {
+      console.error(`[Backend] Python not found: ${pythonPath}`);
+      console.error('[Backend] Please run: npm run python:setup');
+
+      // List what's actually in the resources directory
+      try {
+        const resourcesDir = path.dirname(pythonPath);
+        console.error(`[Backend] Contents of ${resourcesDir}:`);
+        if (fs.existsSync(resourcesDir)) {
+          console.error(fs.readdirSync(resourcesDir).join(', '));
+        } else {
+          console.error('Directory does not exist');
+        }
+      } catch (e) {
+        console.error('[Backend] Could not list directory:', e.message);
+      }
+
+      reject(new Error(`Python executable not found: ${pythonPath}\nRun 'npm run python:setup' to create the virtual environment.`));
+      return;
+    }
+
+    // Check if script exists
     if (!fs.existsSync(scriptPath)) {
       console.error(`[Backend] Script not found: ${scriptPath}`);
       reject(new Error(`Python script not found: ${scriptPath}`));

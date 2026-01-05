@@ -1,3 +1,7 @@
 node_modules/
 python/.env
-
+venv/
+dist/
+release/
+*.log
+.DS_Store

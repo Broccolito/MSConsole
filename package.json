@@ -6,16 +6,16 @@
   "author": "UCSF MS Research",
   "license": "MIT",
   "scripts": {
+    "python:setup": "node scripts/setup-python.js",
     "start": "electron .",
     "dev": "concurrently \"npm run watch\" \"wait-on dist/renderer/index.html && electron .\"",
     "watch": "webpack --mode development --watch",
     "build:renderer": "webpack --mode production",
-    "build": "npm run build:renderer && electron-builder",
-    "build:win": "npm run build:renderer && electron-builder --win",
-    "build:mac": "npm run build:renderer && electron-builder --mac",
-    "build:linux": "npm run build:renderer && electron-builder --linux",
-    "python:install": "pip install -r python/requirements.txt",
-    "python:start": "python python/msconsole_server.py"
+    "build": "npm run python:setup && npm run build:renderer && electron-builder",
+    "build:win": "npm run python:setup && npm run build:renderer && electron-builder --win",
+    "build:mac": "npm run python:setup && npm run build:renderer && electron-builder --mac",
+    "build:linux": "npm run python:setup && npm run build:renderer && electron-builder --linux",
+    "postinstall": "npm run python:setup"
   },
   "build": {
     "appId": "edu.ucsf.msconsole",
@@ -28,12 +28,24 @@
       "src/main/**/*",
       "python/**/*",
       "assets/**/*",
-      "node_modules/**/*"
+      "node_modules/**/*",
+      "!venv/**/*",
+      "!runtime/**/*"
     ],
     "extraResources": [
       {
         "from": "python",
         "to": "python",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "venv",
+        "to": "venv",
+        "filter": ["**/*"]
+      },
+      {
+        "from": "runtime",
+        "to": "runtime",
         "filter": ["**/*"]
       }
     ],
