@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(venv/bin/python:*)",
+      "Bash(timeout 10 venv/bin/python:*)",
+      "Bash(npm run build:mac:*)",
+      "Bash(du:*)",
+      "Bash(git rm:*)"
+    ]
+  }
+}
