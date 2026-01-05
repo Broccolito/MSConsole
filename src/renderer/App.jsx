@@ -176,9 +176,9 @@ const App = () => {
   
   return (
     <div className="app-container">
-      <TopBar 
+      <TopBar
         onSettingsClick={() => setCurrentView('settings')}
-        onHelpClick={() => {/* TODO: Help modal */}}
+        onHelpClick={() => window.open('https://github.com/Broccolito/MSConsole', '_blank')}
         currentView={currentView}
       />
       
