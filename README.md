@@ -1,4 +1,4 @@
-<img src="assets/icon.png" alt="App Icon" style="zoom:30%;" />
+<img src="assets/icon.png" alt="App Icon" style="zoom:5%;" />
 
 # MS Console 
 
