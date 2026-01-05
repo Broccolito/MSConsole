@@ -1,23 +1,23 @@
 /* =============================================================================
    MS Console - Global Styles
-   Warm coral/terracotta theme with burnt wine undertones
+   ChatGPT-like clean theme with coral/terracotta accent buttons
    ============================================================================= */
 
 /* CSS Variables - Color Palette */
 :root {
-  /* Core palette - Warm Coral/Terracotta Theme */
-  --app-bg: #F6EFEA;
-  --secondary-bg: #F6EFEA;
+  /* Core palette - ChatGPT-like light gray/white with coral accents */
+  --app-bg: #FFFFFF;
+  --secondary-bg: #F7F7F8;
   --chat-bg: #FFFFFF;
-  --border-color: #E1A08A;
-  --subtle-border: #E8CEC3;
+  --border-color: #E5E7EB;
+  --subtle-border: #ECECF1;
 
   /* Text colors */
-  --text-primary: #3A1F1A;
-  --text-secondary: #7D4F42;
-  --text-placeholder: #A67C6D;
+  --text-primary: #111827;
+  --text-secondary: #6B7280;
+  --text-placeholder: #9CA3AF;
 
-  /* Accent colors - Burnt Coral/Terracotta */
+  /* Accent colors - Burnt Coral/Terracotta for buttons */
   --accent-primary: #C65A3A;
   --accent-hover: #9E3F2B;
   --accent-light: rgba(198, 90, 58, 0.1);
@@ -29,15 +29,15 @@
   --success-color: #10B981;
 
   /* Message bubbles */
-  --user-bubble-bg: #FEFBF9;
-  --user-bubble-border: #E8CEC3;
+  --user-bubble-bg: #F7F7F8;
+  --user-bubble-border: #E5E7EB;
   --assistant-bubble-bg: #FFFFFF;
-  --assistant-bubble-border: #E8CEC3;
-  --tool-panel-bg: #F9F1ED;
+  --assistant-bubble-border: #ECECF1;
+  --tool-panel-bg: #F3F4F6;
 
   /* Interactive states */
-  --selected-bg: #F2DDD4;
-  --hover-bg: #F9EDE6;
+  --selected-bg: #EDEDED;
+  --hover-bg: #F0F0F0;
   --focus-ring: rgba(198, 90, 58, 0.35);
   
   /* Spacing */

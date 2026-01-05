@@ -85,7 +85,7 @@
   font-size: var(--font-size-base);
   border: 1px solid var(--border-color);
   border-radius: var(--radius-md);
-  background-color: var(--chat-bg);
+  background-color: var(--app-bg);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
 
