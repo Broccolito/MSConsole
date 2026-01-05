@@ -20,62 +20,66 @@ A desktop application for exploring and analyzing the UCSF Multiple Sclerosis Me
 ## Prerequisites
 
 - **Node.js** 18+ and npm
-- **Python** 3.9+
 - **OpenAI API Key**
 - Access to the UCSF MS Database (credentials provided separately)
 
+**Note**: Python is bundled with the application. No separate Python installation is required.
+
 ## Installation
 
-### 1. Clone or extract the project
+### For End Users
+
+Download the pre-built application from the releases:
+
+1. **macOS**: Download the `.dmg` file, open it, and drag MS Console to Applications
+2. **Windows**: Download the `.exe` installer and run it
+3. **Linux**: Download the `.AppImage` and make it executable
+
+### For Developers
+
+#### 1. Clone or extract the project
 
 ```bash
 cd MSConsole
 ```
 
-### 2. Install Node.js dependencies
+#### 2. Install dependencies
 
 ```bash
 npm install
 ```
 
-### 3. Install Python dependencies
+This will automatically:
+- Install Node.js dependencies
+- Set up the Python virtual environment using the bundled Python runtime
+- Install all Python dependencies
 
-```bash
-pip install -r python/requirements.txt
-```
-
-Or use a virtual environment:
-
-```bash
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r python/requirements.txt
-```
+**Note**: The standalone Python runtime is included in the `runtime/` folder, so no system Python installation is needed.
 
 ## Running the Application
 
 ### Development Mode
 
-1. **Start the Python backend** (in one terminal):
+The Python backend starts automatically with Electron. Simply run:
 
 ```bash
-npm run python:start
-# Or directly:
-python python/msconsole_server.py
-```
-
-2. **Build and start Electron** (in another terminal):
-
-```bash
+# Build the renderer once
 npm run build:renderer
+
+# Start the application
 npm start
 ```
 
-Or use the combined development command:
+Or use the development mode with auto-rebuild:
 
 ```bash
 npm run dev
 ```
+
+The app will:
+- Automatically start the Python backend using the bundled runtime
+- Launch the Electron window
+- Hot-reload on changes (in dev mode)
 
 ### Production Build
 
@@ -85,17 +89,27 @@ Build for your platform:
 # All platforms (from respective OS)
 npm run build
 
-# Windows
-npm run build:win
-
-# macOS
+# macOS (DMG and ZIP)
 npm run build:mac
 
-# Linux
+# Windows (NSIS installer and ZIP)
+npm run build:win
+
+# Linux (AppImage and DEB)
 npm run build:linux
 ```
 
-Built applications will be in the `release/` directory.
+The build process will:
+1. Set up the Python virtual environment with the bundled runtime
+2. Build the React frontend with webpack
+3. Package the application with electron-builder
+4. Create installers in the `release/` directory
+
+Built applications are fully self-contained with:
+- Python 3.12.1 runtime
+- All Python dependencies
+- Electron framework
+- React frontend
 
 ## Configuration
 
@@ -164,9 +178,15 @@ MSConsole/
 ├── python/
 │   ├── msconsole_server.py    # FastAPI server with streaming
 │   └── requirements.txt       # Python dependencies
+├── runtime/                   # Standalone Python 3.12.1 runtime
+│   ├── bin/                   # Python executables
+│   └── lib/                   # Python standard library
+├── scripts/
+│   └── setup-python.js        # Python environment setup script
 ├── assets/                    # Icons and images
 ├── package.json               # Node.js config and scripts
-└── webpack.config.js          # Frontend build config
+├── webpack.config.js          # Frontend build config
+└── PYTHON_SETUP.md            # Detailed Python setup documentation
 ```
 
 ## Architecture
@@ -195,21 +215,68 @@ MSConsole/
 
 ### Backend Won't Start
 
-- Check Python is in your PATH
-- Verify all dependencies are installed: `pip install -r python/requirements.txt`
-- Check port 8765 isn't in use
+If you see "Error: connect ECONNREFUSED 127.0.0.1:8765":
+
+**Development Mode:**
+```bash
+# Recreate the Python environment
+npm run python:setup
+
+# Then restart the app
+npm start
+```
+
+**Production Build:**
+- The Python environment is bundled with the app
+- If issues persist, rebuild the application: `npm run build:mac` (or your platform)
+- Check the console logs for detailed error messages
+
+**Common Issues:**
+- Port 8765 is already in use (check for other instances)
+- Python virtual environment is corrupted (run `npm run python:setup`)
+- Missing Python dependencies (reinstall with `npm run python:setup`)
 
 ### Connection Errors
 
-- Verify your OpenAI API key is valid
-- Check database credentials are correct
-- Ensure network access to queryms.ucsf.edu
+- Verify your OpenAI API key is valid at [platform.openai.com](https://platform.openai.com/api-keys)
+- Check database credentials are correct in Settings
+- Ensure network access to queryms.ucsf.edu (may require VPN)
+- Test connectivity: try opening Settings and clicking "Test Connection"
 
 ### Streaming Not Working
 
 - Confirm "Stream tokens" is enabled in Settings
-- Check browser console for errors
+- Check the DevTools console for errors (View → Developer → Toggle Developer Tools)
 - Try refreshing or restarting the app
+- Verify backend is running (check for Python process)
+
+## Python Environment
+
+This application uses a **standalone Python runtime** to ensure consistency across all platforms.
+
+### Key Features
+
+- **Bundled Runtime**: Python 3.12.1 is included in the `runtime/` folder
+- **Virtual Environment**: Isolated dependencies in `venv/` folder
+- **Automatic Setup**: Environment created automatically during `npm install`
+- **No System Python**: No system Python installation required
+- **Portable**: Works on any machine without Python pre-installed
+
+### Manual Setup
+
+If you need to recreate the Python environment:
+
+```bash
+npm run python:setup
+```
+
+This will:
+1. Remove existing `venv/` folder
+2. Create new virtual environment using runtime Python
+3. Install all dependencies from `python/requirements.txt`
+4. Configure relative paths for portability
+
+For more details, see [PYTHON_SETUP.md](PYTHON_SETUP.md).
 
 ## Security Notes
 
@@ -224,7 +291,7 @@ MIT License - See LICENSE file for details.
 
 ## Support
 
-For issues or questions, please contact the UCSF MS Research team.
+For issues or questions, please contact the UCSF MS Research team or open an issue on [GitHub](https://github.com/Broccolito/MSConsole).
 
 <br>
 
