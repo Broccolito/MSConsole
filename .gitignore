@@ -1,5 +1,3 @@
 node_modules/
 python/.env
 
-# Ignore files larger than 100MB
-*.large
