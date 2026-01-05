@@ -29,10 +29,10 @@
   align-items: center;
   gap: var(--spacing-md);
   padding: var(--spacing-md) var(--spacing-lg);
-  background-color: rgba(16, 163, 127, 0.08);
+  background-color: rgba(198, 90, 58, 0.08);
   color: var(--accent-primary);
   font-size: var(--font-size-sm);
-  border-bottom: 1px solid rgba(16, 163, 127, 0.2);
+  border-bottom: 1px solid rgba(198, 90, 58, 0.2);
 }
 
 .info-banner .banner-btn {

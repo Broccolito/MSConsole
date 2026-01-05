@@ -1,44 +1,44 @@
 /* =============================================================================
    MS Console - Global Styles
-   ChatGPT-like clean white/gray theme
+   Warm coral/terracotta theme with burnt wine undertones
    ============================================================================= */
 
 /* CSS Variables - Color Palette */
 :root {
-  /* Core palette */
-  --app-bg: #FFFFFF;
-  --secondary-bg: #F7F7F8;
+  /* Core palette - Warm Coral/Terracotta Theme */
+  --app-bg: #F6EFEA;
+  --secondary-bg: #F6EFEA;
   --chat-bg: #FFFFFF;
-  --border-color: #E5E7EB;
-  --subtle-border: #ECECF1;
-  
+  --border-color: #E1A08A;
+  --subtle-border: #E8CEC3;
+
   /* Text colors */
-  --text-primary: #111827;
-  --text-secondary: #6B7280;
-  --text-placeholder: #9CA3AF;
-  
-  /* Accent colors */
-  --accent-primary: #10A37F;
-  --accent-hover: #0E8F6F;
-  --accent-light: rgba(16, 163, 127, 0.1);
-  
-  /* Status colors */
+  --text-primary: #3A1F1A;
+  --text-secondary: #7D4F42;
+  --text-placeholder: #A67C6D;
+
+  /* Accent colors - Burnt Coral/Terracotta */
+  --accent-primary: #C65A3A;
+  --accent-hover: #9E3F2B;
+  --accent-light: rgba(198, 90, 58, 0.1);
+
+  /* Status colors - Keep original for foundational UI */
   --warning-bg: #FEF3C7;
   --warning-text: #92400E;
   --error-color: #EF4444;
   --success-color: #10B981;
-  
+
   /* Message bubbles */
-  --user-bubble-bg: #F7F7F8;
-  --user-bubble-border: #E5E7EB;
+  --user-bubble-bg: #FEFBF9;
+  --user-bubble-border: #E8CEC3;
   --assistant-bubble-bg: #FFFFFF;
-  --assistant-bubble-border: #ECECF1;
-  --tool-panel-bg: #F3F4F6;
-  
+  --assistant-bubble-border: #E8CEC3;
+  --tool-panel-bg: #F9F1ED;
+
   /* Interactive states */
-  --selected-bg: #EDEDED;
-  --hover-bg: #F0F0F0;
-  --focus-ring: rgba(16, 163, 127, 0.35);
+  --selected-bg: #F2DDD4;
+  --hover-bg: #F9EDE6;
+  --focus-ring: rgba(198, 90, 58, 0.35);
   
   /* Spacing */
   --spacing-xs: 4px;
