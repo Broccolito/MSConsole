@@ -4,4 +4,5 @@ venv/
 dist/
 release/
 *.log
-.DS_Store
+**/.DS_Store
+
