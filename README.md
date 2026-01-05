@@ -3,6 +3,8 @@
 
 A desktop application for exploring and analyzing the UCSF Multiple Sclerosis Medical Database using OpenAI's GPT models and natural language queries.
 
+<br>
+
 ![MS Console Screenshot](assets/screenshot.png)
 
 ## Features
